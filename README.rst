@@ -38,6 +38,7 @@ The EdgeGrid plugin relies on a .edgerc credentials file that needs to be create
 Once you have the credentials set up, here is an example of what an Akamai OPEN API call would look like:
 
 .. code-block:: bash
+
 	% http --auth-type edgegrid  -a <section_name>: :/<api_endpoint>
 
 Set the auth-type to `edgegrid` and use -a `section_name:` to choose a credential set from the .edgerc credentials file. Start the api_endpoint with a `:` to avoid using the long Akamaia token based hostname.
@@ -48,5 +49,6 @@ Example
 Making the diagnostic-tools API `locations` call:
 
 .. code-block:: bash
+
 	% http --auth-type edgegrid  -a default: :/diagnostic-tools/v1/locations
 
