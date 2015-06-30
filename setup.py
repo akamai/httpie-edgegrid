@@ -9,7 +9,7 @@ setup(
     name='httpie-edgegrid',
     description='Edgegrid plugin for HTTPie.',
     long_description=open('README.rst').read().strip(),
-    version='1.0.0',
+    version='1.0.1',
     author='Kirsten Hunter',
     author_email='khunter@akamai.com',
     license='Apache 2.0',
