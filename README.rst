@@ -41,8 +41,6 @@ Once you have the credentials set up, here is an example of what an Akamai OPEN 
 
 	% http --auth-type edgegrid -a <section_name>: :/<api_endpoint>
 
-Set the auth-type to `edgegrid` and use `section_name@` to choose a credential set from the .edgerc credentials file. Start the api_endpoint with a `:` to avoid using the long Akamaia token based hostname.
-
 Example
 -------
 
