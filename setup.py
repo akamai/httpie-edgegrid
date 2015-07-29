@@ -24,6 +24,6 @@ setup(
     },
     install_requires=[
         'httpie>=0.7.0',
-	'edgegrid-python>=1.0.5'
+	'edgegrid-python>=1.0.9'
     ],
 )
