@@ -14,15 +14,15 @@ __licence__ = 'Apache 2.0'
  
 class HTTPieEdgeGridAuth(EdgeGridAuth):
  
-    def __init__(self, hostname, *args, **kwargs):
-        self.__hostname = hostname
-        super(HTTPieEdgeGridAuth, self).__init__(*args, **kwargs)
+	def __init__(self, hostname, *args, **kwargs):
+		self.__hostname = hostname
+		super(HTTPieEdgeGridAuth, self).__init__(*args, **kwargs)
  
-    def __call__(self, r):
-        r = super(HTTPieEdgeGridAuth, self).__call__(r)
-	r.url = r.url.replace("http","https")
-	r.url = r.url.replace("localhost/",self.__hostname)
-        return super(HTTPieEdgeGridAuth, self).__call__(r)
+		def __call__(self, r):
+			r = super(HTTPieEdgeGridAuth, self).__call__(r)
+			r.url = r.url.replace("http","https")
+			r.url = r.url.replace("localhost/",self.__hostname)
+			return super(HTTPieEdgeGridAuth, self).__call__(r)
  
  
 class EdgeGridPlugin(AuthPlugin):
@@ -32,8 +32,8 @@ class EdgeGridPlugin(AuthPlugin):
     description = ''
  
     def get_auth(self, username, password):
-	home = os.environ['HOME']	
-	rc = EdgeRc("%s/.edgerc" % home) 
+        home = os.environ['HOME']	
+        rc = EdgeRc("%s/.edgerc" % home) 
  
         if not rc.has_section(username):
             err_msg = "\nERROR: No section named '%s' was found in your .edgerc file\n" % username
@@ -42,12 +42,12 @@ class EdgeGridPlugin(AuthPlugin):
             sys.stderr.write(err_msg)
             sys.exit(1)
 
-	host=rc.get(username, 'host')
+        host=rc.get(username, 'host')
         host=host.replace("https://", "")
         host= host.replace ("/","")
         host += "/"
         auth = HTTPieEdgeGridAuth(
-	    hostname = host,
+            hostname = host,
             client_token=rc.get(username, 'client_token'),
             client_secret=rc.get(username, 'client_secret'),
             access_token=rc.get(username, 'access_token'),
