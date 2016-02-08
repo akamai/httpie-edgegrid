@@ -18,11 +18,11 @@ class HTTPieEdgeGridAuth(EdgeGridAuth):
 		self.__hostname = hostname
 		super(HTTPieEdgeGridAuth, self).__init__(*args, **kwargs)
  
-		def __call__(self, r):
-			r = super(HTTPieEdgeGridAuth, self).__call__(r)
-			r.url = r.url.replace("http","https")
-			r.url = r.url.replace("localhost/",self.__hostname)
-			return super(HTTPieEdgeGridAuth, self).__call__(r)
+	def __call__(self, r):
+		r = super(HTTPieEdgeGridAuth, self).__call__(r)
+		r.url = r.url.replace("http:","https:")
+		r.url = r.url.replace("localhost/",self.__hostname)
+		return super(HTTPieEdgeGridAuth, self).__call__(r)
  
  
 class EdgeGridPlugin(AuthPlugin):
