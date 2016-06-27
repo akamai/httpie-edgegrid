@@ -32,8 +32,8 @@ class EdgeGridPlugin(AuthPlugin):
     description = ''
  
     def get_auth(self, username, password):
-        home = os.environ['HOME']	
-        rc = EdgeRc("%s/.edgerc" % home) 
+        rc_path = os.path.expanduser("~/.edgerc")
+        rc = EdgeRc(rc_path)
  
         if not rc.has_section(username):
             err_msg = "\nERROR: No section named '%s' was found in your .edgerc file\n" % username
