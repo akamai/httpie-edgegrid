@@ -8,6 +8,7 @@ except ImportError:
 setup(
     name='httpie-edgegrid',
     description='Edgegrid plugin for HTTPie.',
+    python_requires=">=2.7.10",
     long_description=open('README.rst').read().strip(),
     version='1.0.2',
     author='Kirsten Hunter',
