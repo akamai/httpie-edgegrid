@@ -70,3 +70,14 @@ The error "ImportError: ‘pyOpenSSL’ module missing required functionality. T
 	/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/libexec:/usr/local/Cellar/python/2.7.13/bin
 	$ sudo python setup.py install
 
+Since v0.9.4 of httpie the Mac homebrew package is build with python3. If you get an error for "ImportError: No module named cryptography" then probably you installed httpie-edgegrid with python2.7. To explicitly install with python3 use:
+
+.. code-block:: bash
+
+	$ sudo python3 setup.py install
+
+Or with pip3:
+
+.. code-block:: bash
+
+	$ sudo pip3 install httpie-edgegrid
