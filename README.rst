@@ -21,6 +21,8 @@ If you have problems intalling from sources, you could use pip:
     $ pip install httpie-edgegrid
 
 
+
+
 Usage
 -----
 
@@ -62,13 +64,11 @@ Troubleshooting
 
 MacOS Sierra users have reported  the error "http: error: argument --auth-type/-A: invalid choice: 'edgegrid' (choose from 'basic', 'digest')" after installation. Try installing using pip instead.
 
-The error "ImportError: ‘pyOpenSSL’ module missing required functionality. Try upgrading to v0.14 or newer" could be associated with running an older version of python (sometimes the one shipped with the OS). Try pointing to a newer python interpreter. In the example below, version 2.7.13 is intalled at /usr/local/Cellar/python/2.7.13/bin
+The error "ImportError: ‘pyOpenSSL’ module missing required functionality. Try upgrading to v0.14 or newer" requires you to install an updated version of `pyOpenSSL`:
 
 .. code-block:: bash
 
-	$ echo $PATH
-	/usr/local/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/libexec:/usr/local/Cellar/python/2.7.13/bin
-	$ sudo python setup.py install
+	$ pip install --ignore-installed pyOpenSSL
 
 Since v0.9.4 of httpie the Mac homebrew package is build with python3. If you get an error for "ImportError: No module named cryptography" then probably you installed httpie-edgegrid with python2.7. To explicitly install with python3 use:
 
