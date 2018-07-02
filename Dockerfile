@@ -1,5 +1,4 @@
 FROM alpine:latest
-LABEL maintainer="DAD Team Chicago <DADTeamChicago@lego.com>"
 
 RUN apk update && apk upgrade
 
