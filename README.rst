@@ -13,6 +13,11 @@ To install from sources:
 
     $ python setup.py install
 
+If using python 3 on Mac, replace python with python3:
+
+.. code-block:: bash
+
+    $ python3 setup.py install
 
 If you have problems intalling from sources, you could use pip:
 
