@@ -69,7 +69,7 @@ Troubleshooting
 
 MacOS Sierra users have reported  the error "http: error: argument --auth-type/-A: invalid choice: 'edgegrid' (choose from 'basic', 'digest')" after installation. Try installing using pip instead.
 
-The error "ImportError: ‘pyOpenSSL’ module missing required functionality. Try upgrading to v0.14 or newer" requires you to install an updated version of `pyOpenSSL`:
+The error "ImportError: 'pyOpenSSL' module missing required functionality. Try upgrading to v0.14 or newer" requires you to install an updated version of `pyOpenSSL`:
 
 .. code-block:: bash
 
