@@ -62,8 +62,8 @@ Making the diagnostic-tools API `locations` call:
 
 .. code-block:: bash
 
-	% http --auth-type edgegrid -a default: :/diagnostic-tools/v1/locations
-	
+	% http --auth-type edgegrid -a default: :/diagnostic-tools/v2/ghost-locations/available
+
 Troubleshooting
 ---------------
 
