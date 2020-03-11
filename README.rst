@@ -25,8 +25,16 @@ If you have problems intalling from sources, you could use pip:
 
     $ pip install httpie-edgegrid
 
+If using Docker:
 
-
+    Build:
+    docker build . -t httpie-edgegrid
+    
+    Run:
+    docker run -it httpie-edgegrid:latest
+    
+    Configuration:
+    For .edgerc or httpie configuration use /root for the home dir.
 
 Usage
 -----
@@ -86,3 +94,4 @@ Or with pip3:
 .. code-block:: bash
 
 	$ sudo pip3 install httpie-edgegrid
+
