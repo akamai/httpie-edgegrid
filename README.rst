@@ -1,11 +1,9 @@
-httpie-edgegrid
-===============
+# httpie-edgegrid
 
 EdgeGrid plugin for `HTTPie <https://github.com/jkbr/httpie>`_.
 
+## Installation
 
-Installation
-------------
 
 To install from sources:
 
@@ -25,11 +23,7 @@ If you have problems intalling from sources, you could use pip:
 
     $ pip install httpie-edgegrid
 
-
-
-
-Usage
------
+## Usage
 
 The EdgeGrid plugin relies on a .edgerc credentials file that needs to be created in your home directory and organized by [section] following the format below. Each [section] can contain a different credentials set allowing you to store all of your credentials in a single .edgerc file. 
 
@@ -55,8 +49,7 @@ Once you have the credentials set up, here is an example of what an Akamai OPEN 
 
 	% http --auth-type edgegrid -a <section_name>: :/<api_endpoint>
 
-Example
--------
+## Examples
 
 Making the diagnostic-tools API `locations` call:
 
@@ -64,8 +57,7 @@ Making the diagnostic-tools API `locations` call:
 
 	% http --auth-type edgegrid -a default: :/diagnostic-tools/v2/ghost-locations/available
 
-Troubleshooting
----------------
+## Troubleshooting
 
 MacOS Sierra users have reported  the error "http: error: argument --auth-type/-A: invalid choice: 'edgegrid' (choose from 'basic', 'digest')" after installation. Try installing using pip instead.
 
@@ -86,3 +78,8 @@ Or with pip3:
 .. code-block:: bash
 
 	$ sudo pip3 install httpie-edgegrid
+
+## Advisories
+
+Starting with HTTPie version 2.3.0 uploads are streamed, causing an issue posting JSON payloads as those don't include a content-length causing an error with the Edgegrid authentication libraries. You can use the workaround below Akamai updates the https://github.com/akamai/AkamaiOPEN-edgegrid-python library. See https://github.com/akamai/AkamaiOPEN-edgegrid-python/issues/49 for more details
+
