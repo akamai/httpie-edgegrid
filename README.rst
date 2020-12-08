@@ -90,5 +90,5 @@ Or with pip3:
 Advisories
 ----------
 
-Starting with HTTPie version 2.3.0 uploads are streamed, causing an issue posting JSON payloads as those don't include a content-length causing an error with the Edgegrid authentication libraries. You can use the workaround below Akamai updates the https://github.com/akamai/AkamaiOPEN-edgegrid-python library. See https://github.com/akamai/AkamaiOPEN-edgegrid-python/issues/49 for more details
+Starting with HTTPie version 2.3.0 uploads are streamed, causing an issue posting JSON payloads as those don't include a content-length causing an error with the `Edgegrid authentication libraries <https://github.com/akamai/AkamaiOPEN-edgegrid-python>`_. See `Issue #49 <https://github.com/akamai/AkamaiOPEN-edgegrid-python/issues/49>`_ for more details
 
