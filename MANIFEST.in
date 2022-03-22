@@ -1,3 +1,4 @@
 include *.rst LICENSE
 include requirements.txt
+include requirements_python27.txt
 recursive-include test/testfiles *

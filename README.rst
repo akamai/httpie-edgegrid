@@ -77,6 +77,16 @@ Making the diagnostic-tools API `locations` call:
 
 	% http --auth-type edgegrid -a default: :/diagnostic-tools/v2/ghost-locations/available
 
+
+Running on Python2.7
+---------------
+
+For using httpie-edgegrid with Python2.7 user should consider downgrading the libraries version:
+
+ * httpie -> 1.0.3
+ * pyOpenSSL -> 21.0.0
+
+
 Troubleshooting
 ---------------
 

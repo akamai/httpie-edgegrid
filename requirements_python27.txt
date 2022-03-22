@@ -1,0 +1,3 @@
+pyOpenSSL==21.0.0
+httpie==1.0.3
+edgegrid-python==1.2.1
