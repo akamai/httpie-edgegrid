@@ -27,6 +27,19 @@ If you have problems intalling from sources, you could use pip:
 
 
 
+Running tests in virtual environment
+------------
+
+
+To test in a `virtual environment <https://packaging.python.org/tutorials/installing-packages/#creating-virtual-environments>`_, run:
+
+.. code-block:: bash
+
+    $ python3 -m venv venv
+    $ . venv/bin/activate
+    $ pip install -r requirements.txt
+    $ python -m unittest discover
+
 
 Usage
 -----

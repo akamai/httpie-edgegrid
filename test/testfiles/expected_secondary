@@ -1,0 +1,14 @@
+[default]
+client_secret = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=
+host = xxxx-xxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxx.luna.akamaiapis.net/
+access_token = xxxx-xxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxx
+client_token = xxxx-xxxxxxxxxxxxxxxx-xxxxxxxxxxxxxxxx
+max-body = 131072
+
+[secondary]
+client_secret = qwerty=
+host = zzzz.luna.akamaiapis.net/
+access_token = poiuy
+client_token = abcdef
+max-body = 131072
+

@@ -1,9 +1,9 @@
 from setuptools import setup
+
 try:
     import multiprocessing
 except ImportError:
     pass
-
 
 setup(
     name='httpie-edgegrid',
@@ -14,8 +14,9 @@ setup(
     author='Kirsten Hunter',
     author_email='khunter@akamai.com',
     license='Apache 2.0',
-    url='https://github.com/akamai-open/httpie-edgegrid',
-    download_url='https://github.com/akamai-open/httpie-edgegrid',
+    url='https://github.com/akamai/httpie-edgegrid',
+    download_url='https://github.com/akamai/httpie-edgegrid',
+    maintainer_email='dl-devexp-eng@akamai.com',
     py_modules=['httpie_edgegrid'],
     zip_safe=False,
     entry_points={
@@ -24,8 +25,9 @@ setup(
         ]
     },
     install_requires=[
-        'httpie >= 0.9.2',
-	    'edgegrid-python >= 1.0.9',
-        'pyOpenSSL >= 0.13'
+        'httpie == 3.1.0',
+        'edgegrid-python == 1.2.1',
+        'pyOpenSSL == 22.0.0'
     ],
+
 )
