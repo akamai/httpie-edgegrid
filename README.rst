@@ -19,7 +19,7 @@ If using python 3 on Mac, replace python with python3:
 
     $ python3 setup.py install
 
-If you have problems intalling from sources, you could use pip:
+If you have problems installing from sources, you could use pip:
 
 .. code-block:: bash
 
@@ -83,9 +83,10 @@ Running on Python2.7
 
 For using httpie-edgegrid with Python2.7 user should consider downgrading the libraries version:
 
- * httpie -> 1.0.3
- * pyOpenSSL -> 21.0.0
+ * httpie==1.0.3
+ * pyOpenSSL<22.0.0
 
+Please use appropriate requirements file and adapt setup.py file.
 
 Troubleshooting
 ---------------
