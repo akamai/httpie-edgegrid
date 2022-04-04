@@ -21,10 +21,10 @@
  limitations under the License.
 """
 
-import sys
+import argparse
 import os
 import re
-import argparse
+import sys
 from os.path import expanduser
 
 if sys.version_info[0] >= 3:

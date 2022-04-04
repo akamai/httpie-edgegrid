@@ -1,10 +1,16 @@
+import io
 import os.path
+import sys
 import unittest
-from unittest.mock import MagicMock
+
+if sys.version_info[0] >= 3:
+    # python3
+    from unittest.mock import MagicMock
+else:
+    # python2.7
+    from mock.mock import MagicMock
 
 from gen_edgerc import generate_edgerc
-import io
-
 from test.utils import normalize_path
 
 

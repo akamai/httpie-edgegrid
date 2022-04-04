@@ -78,6 +78,18 @@ Making the diagnostic-tools API `locations` call:
 	% http --auth-type edgegrid -a default: :/diagnostic-tools/v2/ghost-locations/available
 
 
+Parameters
+----------
+
+``--edgegrid-config``
+    Path to ``.edgerc`` credentials file (optional, defaults to ``~/.edgerc``)
+
+Environment variables
+---------------------
+
+``RC_PATH``
+    Path to ``.edgerc`` credentials file (optional, equivalent to the ``--edgegrid-config`` parameter)
+
 Running on Python2.7
 ---------------
 
