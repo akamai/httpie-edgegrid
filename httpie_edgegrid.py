@@ -23,7 +23,7 @@ import sys
 
 from akamai.edgegrid import EdgeGridAuth, EdgeRc
 from httpie.cli.definition import options, parser
-from httpie.cli.options import Group, map_qualifiers, ARGPARSE_QUALIFIER_MAP
+from httpie.cli.options import ARGPARSE_QUALIFIER_MAP, Group, map_qualifiers
 from httpie.plugins import AuthPlugin
 
 __version__ = '1.0.6'

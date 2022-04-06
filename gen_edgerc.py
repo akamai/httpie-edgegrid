@@ -25,14 +25,8 @@ import argparse
 import os
 import re
 import sys
+from configparser import ConfigParser
 from os.path import expanduser
-
-if sys.version_info[0] >= 3:
-    # python3
-    from configparser import ConfigParser
-else:
-    # python2.7
-    from ConfigParser import ConfigParser
 
 # This script will create a configuration section with the name of the client in your
 # ~/.edgerc credential store. Many of the sample applications use the a section 

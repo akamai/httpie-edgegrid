@@ -1,11 +1,10 @@
 import os
 import unittest
+from test.utils import normalize_path
 
 from requests import Request
 
 from httpie_edgegrid import EdgeGridPlugin
-
-from test.utils import normalize_path
 
 
 class HttpieEdgegridTest(unittest.TestCase):

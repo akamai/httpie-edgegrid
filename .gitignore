@@ -18,3 +18,5 @@ build/
 dist/
 httpie_edgegrid.egg-info/
 venv/
+
+__pycache__

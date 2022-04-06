@@ -1,17 +1,10 @@
 import io
 import os.path
-import sys
 import unittest
-
-if sys.version_info[0] >= 3:
-    # python3
-    from unittest.mock import MagicMock
-else:
-    # python2.7
-    from mock.mock import MagicMock
+from test.utils import normalize_path
+from unittest.mock import MagicMock
 
 from gen_edgerc import generate_edgerc
-from test.utils import normalize_path
 
 
 def test_case(assert_func, target_path, input_configuration, expected_path, section):
