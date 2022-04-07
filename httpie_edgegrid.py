@@ -16,8 +16,8 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 """
-
 import argparse
+import configparser
 import os
 import sys
 
@@ -29,7 +29,6 @@ from httpie.plugins import AuthPlugin
 __version__ = '1.0.6'
 __author__ = 'Kirsten Hunter'
 __licence__ = 'Apache 2.0'
-
 
 RC_PATH = ''
 
@@ -122,14 +121,23 @@ class EdgeGridPlugin(AuthPlugin):
             sys.stderr.write(err_msg)
             sys.exit(1)
 
-        rc = EdgeRc(rc_path)
+        try:
+            rc = EdgeRc(rc_path)
+        except configparser.MissingSectionHeaderError as e:
+            err_msg = '''
+ERROR: {0} is not a valid .edgerc file
+ERROR: Please generate credentials for the script functionality
+ERROR: and run 'python gen_edgerc.py %s' to generate the credential file
+'''.format(e.source)
+            sys.stderr.write(err_msg)
+            sys.exit(2)
 
         if not rc.has_section(username):
             err_msg = "\nERROR: No section named '%s' was found in your .edgerc file\n" % username
             err_msg += "ERROR: Please generate credentials for the script functionality\n"
             err_msg += "ERROR: and run 'python gen_edgerc.py %s' to generate the credential file\n"
             sys.stderr.write(err_msg)
-            sys.exit(1)
+            sys.exit(3)
 
         host = rc.get(username, 'host')
         host = host.replace("https://", "")

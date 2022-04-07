@@ -40,10 +40,16 @@ class HttpieEdgegridTest(unittest.TestCase):
             self._test_case("https://localhost/", self._host, "default")
         self.assertEqual(1, err_msg.exception.code)
 
+    def test_bad_rc_file(self):
+        with self.assertRaises(SystemExit) as err_msg:
+            os.environ["RC_PATH"] = normalize_path('test_httpie_edgegrid.py')
+            self._test_case("https://localhost/", self._host, "default")
+        self.assertEqual(2, err_msg.exception.code)
+
     def test_bad_rc_entry(self):
         with self.assertRaises(SystemExit) as err:
             self._test_case("https://localhost/", self._host, "not_default")
-        self.assertEqual(1, err.exception.code)
+        self.assertEqual(3, err.exception.code)
 
 
 if __name__ == '__main__':
