@@ -123,12 +123,12 @@ class EdgeGridPlugin(AuthPlugin):
 
         try:
             rc = EdgeRc(rc_path)
-        except configparser.MissingSectionHeaderError as e:
+        except (configparser.DuplicateSectionError, configparser.MissingSectionHeaderError, UnicodeDecodeError):
             err_msg = '''
 ERROR: {0} is not a valid .edgerc file
 ERROR: Please generate credentials for the script functionality
 ERROR: and run 'python gen_edgerc.py %s' to generate the credential file
-'''.format(e.source)
+'''.format(rc_path)
             sys.stderr.write(err_msg)
             sys.exit(2)
 

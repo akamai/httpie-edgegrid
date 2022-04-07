@@ -40,9 +40,21 @@ class HttpieEdgegridTest(unittest.TestCase):
             self._test_case("https://localhost/", self._host, "default")
         self.assertEqual(1, err_msg.exception.code)
 
-    def test_bad_rc_file(self):
+    def test_bad_rc_file_format(self):
         with self.assertRaises(SystemExit) as err_msg:
             os.environ["RC_PATH"] = normalize_path('test_httpie_edgegrid.py')
+            self._test_case("https://localhost/", self._host, "default")
+        self.assertEqual(2, err_msg.exception.code)
+
+    def test_duplicated_rc_file_section(self):
+        with self.assertRaises(SystemExit) as err_msg:
+            os.environ["RC_PATH"] = normalize_path('testfiles/sample_edgerc_duplicated_section')
+            self._test_case("https://localhost/", self._host, "default")
+        self.assertEqual(2, err_msg.exception.code)
+
+    def test_binary(self):
+        with self.assertRaises(SystemExit) as err_msg:
+            os.environ["RC_PATH"] = normalize_path('testfiles/binary')
             self._test_case("https://localhost/", self._host, "default")
         self.assertEqual(2, err_msg.exception.code)
 
