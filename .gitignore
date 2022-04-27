@@ -1,0 +1,22 @@
+# eclipse
+.classpath
+.project
+.settings
+
+# IntelliJ
+.idea/
+*.ipr
+*.iws
+*.iml
+
+# vscode
+.vscode/
+__debug_bin
+
+# after-build/install artifacts
+build/
+dist/
+httpie_edgegrid.egg-info/
+venv/
+
+__pycache__
