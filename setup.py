@@ -24,7 +24,7 @@ setup(
         ]
     },
     install_requires=[
-        'httpie == 3.1.0',
+        'httpie == 3.2.1',
         'edgegrid-python == 1.2.1',
         'pyOpenSSL == 22.0.0'
     ],
