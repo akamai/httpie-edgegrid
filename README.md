@@ -39,14 +39,13 @@ $ python -m unittest discover
 
 The EdgeGrid plugin relies on a .edgerc credentials file that needs to be created in your home directory and organized by \[section\] following the format below. Each \[section\] can contain a different credentials set allowing you to store all of your credentials in a single .edgerc file.
 
-``` bash
+```
 [default]
 client_secret = xxxx
 host = xxxx # Note, don't include the https:// here
 access_token = xxxx
 client_token = xxxx
 max-body = xxxx
-
 [section1]
 client_secret = xxxx
 host = xxxx # Note, don't include the https:// here
