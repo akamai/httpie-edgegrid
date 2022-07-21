@@ -11,7 +11,7 @@ setup(
     python_requires=">=3.7",
     long_description=open('README.md').read().strip(),
     version='2.0.0',
-    author='Roberto Lopez Lopez',
+    author='Developer Experience Akamai',
     author_email='devrel@akamai.com',
     license='Apache 2.0',
     url='https://github.com/akamai/httpie-edgegrid',
