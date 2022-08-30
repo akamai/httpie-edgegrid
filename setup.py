@@ -10,7 +10,7 @@ setup(
     description='Edgegrid plugin for HTTPie.',
     python_requires=">=3.7",
     long_description=open('README.md').read().strip(),
-    version='2.0.0',
+    version='2.1.0',
     author='Developer Experience Akamai',
     author_email='devrel@akamai.com',
     license='Apache 2.0',
