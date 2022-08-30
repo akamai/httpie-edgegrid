@@ -1,4 +1,10 @@
 
+## 2.1.0 (2022-08-30)
+
+### Enhancements
+
+* Update edgegrid-python dependency
+
 ## 2.0.0 (2022-04-27)
 
 ### BREAKING CHANGES
