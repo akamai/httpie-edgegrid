@@ -1,3 +1,10 @@
+# HTTPIE EDGEGRID RELEASE NOTES
+
+## 2.1.1 (2022-09-27)
+
+### Enhancements
+
+* Update edgegrid-python dependency
 
 ## 2.1.0 (2022-08-30)
 
