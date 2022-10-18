@@ -1,15 +1,22 @@
+"""
+Please refer to the documentation provided in the README.md,
+which can be found at httpie-edgegrid's PyPI URL: https://pypi.org/project/httpie-edgegrid/
+"""
+
 from setuptools import setup
 
-try:
-    import multiprocessing
-except ImportError:
-    pass
+def get_readme() -> str:
+    """Returns the content of README.md"""
+    with open('README.md') as readme:
+        content = readme.read()
+
+    return content.strip()
 
 setup(
     name='httpie-edgegrid',
     description='Edgegrid plugin for HTTPie.',
     python_requires=">=3.7",
-    long_description=open('README.md').read().strip(),
+    long_description=get_readme(),
     version='2.1.1',
     author='Developer Experience Akamai',
     author_email='devrel@akamai.com',
@@ -28,5 +35,4 @@ setup(
         'edgegrid-python == 1.3.1',
         'pyOpenSSL == 22.0.0'
     ],
-
 )
