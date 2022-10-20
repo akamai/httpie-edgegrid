@@ -22,11 +22,11 @@ lint:
 
 .PHONY: test
 test:
-	@. venv/bin/activate; pytest -v
+	@. venv/bin/activate; pytest -v --junitxml test/tests.xml
 
 .PHONY: coverage
 coverage:
-	@. venv/bin/activate; pytest --cov=gen_edgerc --cov=httpie_edgegrid test/
+	@. venv/bin/activate; pytest --cov-report xml:test/coverage/cobertura-coverage.xml --cov=gen_edgerc --cov=httpie_edgegrid test/
 
 .PHONY: all
-all: clean install lint coverage
+all: clean install lint test coverage
