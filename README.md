@@ -65,7 +65,7 @@ Once you have the credentials set up, here is an example of what an Akamai OPEN 
 Making the diagnostic-tools API [locations]{.title-ref} call:
 
 ``` bash
-% http --auth-type edgegrid -a default: :/diagnostic-tools/v2/ghost-locations/available
+% http --auth-type edgegrid -a default: :/edge-diagnostics/v1/edge-locations
 ```
 
 ## Parameters
