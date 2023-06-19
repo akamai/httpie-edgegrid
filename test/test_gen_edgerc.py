@@ -1,54 +1,55 @@
-import io
 import os.path
-import unittest
 from test.utils import normalize_path
 from unittest.mock import MagicMock
 
+import pytest
 from gen_edgerc import generate_edgerc
 
 
-def test_case(assert_func, target_path, input_configuration, expected_path, section):
+@pytest.fixture
+def setup(request):
+    request.param = {k: normalize_path(
+        v) if k != 'section' else v for k, v in request.param.items()}
+
+    if os.path.exists(request.param['target_path']):
+        os.remove(request.param['target_path'])
+
     mock = MagicMock()
-    mock.cred_file = input_configuration
-    mock.config_section = section
-    generate_edgerc(mock, target_path, False)
+    mock.cred_file = request.param['input_configuration']
+    mock.config_section = request.param['section']
 
-    expected = io.open(expected_path)
-    target = io.open(target_path)
-    assert_func(list(expected), list(target))
-
-    target.close()
-    expected.close()
-
-    if os.path.exists(target_path):
-        os.remove(target_path)
-
-
-class MyTestCase(unittest.TestCase):
-    def test_default(self):
-        expected_path = normalize_path("testfiles/expected_default")
-        target_path = normalize_path("testfiles/target_default")
-        input_configuration = normalize_path("testfiles/config_default")
-
-        if os.path.exists(target_path):
-            os.remove(target_path)
-
-        test_case(self.assertListEqual, target_path, input_configuration, expected_path, "default")
-
-    def test_appending(self):
-        expected_path = normalize_path("testfiles/expected_secondary")
-        target_path = normalize_path("testfiles/target_secondary")
-        input_configuration = normalize_path("testfiles/config_secondary")
-        preconfig = normalize_path("testfiles/preconfig_secondary")
-
-        if os.path.exists(target_path):
-            os.remove(target_path)
-
-        with open(preconfig, 'rb') as src, open(target_path, 'wb') as dst:
+    if 'preconfig' in request.param:
+        with open(request.param['preconfig'], 'rb') as src, open(request.param['target_path'], 'wb') as dst:
             dst.write(src.read())
 
-        test_case(self.assertListEqual, target_path, input_configuration, expected_path, "secondary")
+    yield mock, request.param
+
+    if os.path.exists(request.param['target_path']):
+        os.remove(request.param['target_path'])
 
 
-if __name__ == '__main__':
-    unittest.main()
+@pytest.mark.parametrize(
+    'setup',
+    [
+        {
+            'expected_path': 'testfiles/expected_default',
+            'target_path': 'testfiles/target_default',
+            'input_configuration': 'testfiles/config_default',
+            'section': 'default'
+        },
+        {
+            'expected_path': 'testfiles/expected_secondary',
+            'target_path': 'testfiles/target_secondary',
+            'input_configuration': 'testfiles/config_secondary',
+            'preconfig': 'testfiles/preconfig_secondary',
+            'section': 'secondary'
+        },
+    ],
+    indirect=True)
+def test_generate_edgerc(setup):
+    args_mock, params = setup
+
+    generate_edgerc(args_mock, params['target_path'], False)
+
+    with open(params['target_path']) as res, open(params['expected_path']) as expected:
+        assert list(res) == list(expected)
