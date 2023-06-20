@@ -1,10 +1,14 @@
 # HTTPIE EDGEGRID RELEASE NOTES
 
-## 2.X.X (X-X-X)
+## 2.1.2 (2023-06-22)
 
 ### Bug fixes
 
 * Fix bug returning unexpected error when performing basic API call ([I#34](https://github.com/akamai/httpie-edgegrid/issues/34))
+
+### Enhancements
+
+* Update `httpie` and `pyOpenSSL` dependencies
 
 ## 2.1.1 (2022-09-27)
 
