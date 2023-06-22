@@ -42,7 +42,8 @@ def add_new_group(
         title=abstract_group.name, description=abstract_group.description
     )
     if abstract_group.is_mutually_exclusive:
-        concrete_group = concrete_group.add_mutually_exclusive_group(required=False)
+        concrete_group = concrete_group.add_mutually_exclusive_group(
+            required=False)
 
     for abstract_argument in abstract_group.arguments:
         concrete_group.add_argument(
@@ -52,12 +53,12 @@ def add_new_group(
             )
         )
 
-    return
-
 
 class EdgeGridSetterAction(argparse.Action):
-
-    def __init__(self,
+    """
+    Action used to set RC_PATH variable
+    """
+    def __init__(self, #pylint: disable-msg=too-many-arguments
                  option_strings,
                  dest,
                  nargs=None,
@@ -73,8 +74,9 @@ class EdgeGridSetterAction(argparse.Action):
                              'have nothing to store, actions such as store '
                              'true or store const may be more appropriate')
         if const is not None and nargs != argparse.OPTIONAL:
-            raise ValueError('nargs must be %r to supply const' % argparse.OPTIONAL)
-        super(EdgeGridSetterAction, self).__init__(
+            raise ValueError(
+                f'nargs must be {argparse.OPTIONAL} to supply const')
+        super().__init__(
             option_strings=option_strings,
             dest=dest,
             nargs=nargs,
@@ -88,34 +90,40 @@ class EdgeGridSetterAction(argparse.Action):
 
     def __call__(self, _, namespace, values, option_string=None):
         # Set the global RC_PATH
-        global RC_PATH
+        global RC_PATH #pylint: disable-msg=global-statement
         RC_PATH = values
 
 
 class HTTPieEdgeGridAuth(EdgeGridAuth):
-
+    """
+    A wrapper over the EdgeGridAuth
+    """
     def __init__(self, hostname, *args, **kwargs):
         self.__hostname = hostname
-        super(HTTPieEdgeGridAuth, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def __call__(self, r):
         # Here we can decorate with Agent Header (or sth)
-        r = super(HTTPieEdgeGridAuth, self).__call__(r)
+        r = super().__call__(r)
         r.url = r.url.replace("http:", "https:")
         r.url = r.url.replace("localhost/", self.__hostname)
-        return super(HTTPieEdgeGridAuth, self).__call__(r)
+        return super().__call__(r)
 
 
-class EdgeGridPlugin(AuthPlugin):
+class EdgeGridPlugin(AuthPlugin): #pylint: disable-msg=too-few-public-methods
+    """
+    The EdgeGridPlugin builds HTTPieEdgeGridAuth based on the EdgeRC credentials
+    """
     name = 'EdgeGrid auth'
     auth_type = 'edgegrid'
     description = ''
 
     def get_auth(self, username: str = None, password: str = None):
-        rc_path = os.path.expanduser(RC_PATH or os.getenv("RC_PATH") or '~/.edgerc')
+        rc_path = os.path.expanduser(
+            RC_PATH or os.getenv("RC_PATH") or '~/.edgerc')
 
         if not os.path.exists(rc_path):
-            err_msg = "\nERROR: The provided %s file does not exist\n" % rc_path
+            err_msg = f"\nERROR: The provided {rc_path} file does not exist\n"
             err_msg += "ERROR: Please generate credentials for the script functionality\n"
             err_msg += "ERROR: and run 'python gen_edgerc.py %s' to generate the credential file\n"
             sys.stderr.write(err_msg)
@@ -123,17 +131,19 @@ class EdgeGridPlugin(AuthPlugin):
 
         try:
             rc = EdgeRc(rc_path)
-        except (configparser.DuplicateSectionError, configparser.MissingSectionHeaderError, UnicodeDecodeError):
-            err_msg = '''
-ERROR: {0} is not a valid .edgerc file
+        except (configparser.DuplicateSectionError,
+                configparser.MissingSectionHeaderError,
+                UnicodeDecodeError):
+            err_msg = f'''
+ERROR: {rc_path} is not a valid .edgerc file
 ERROR: Please generate credentials for the script functionality
-ERROR: and run 'python gen_edgerc.py %s' to generate the credential file
-'''.format(rc_path)
+ERROR: and run 'python gen_edgerc.py {rc_path}' to generate the credential file
+'''
             sys.stderr.write(err_msg)
             sys.exit(2)
 
         if not rc.has_section(username):
-            err_msg = "\nERROR: No section named '%s' was found in your .edgerc file\n" % username
+            err_msg = f"\nERROR: No section named '{username}' was found in your .edgerc file\n"
             err_msg += "ERROR: Please generate credentials for the script functionality\n"
             err_msg += "ERROR: and run 'python gen_edgerc.py %s' to generate the credential file\n"
             sys.stderr.write(err_msg)

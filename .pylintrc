@@ -1,0 +1,8 @@
+[BASIC]
+disable=
+    redefined-builtin,
+    unspecified-encoding
+
+good-names=
+    rc,
+    httpie-edgegrid
