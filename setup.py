@@ -34,6 +34,6 @@ setup(
         'httpie == 3.2.2',
         'edgegrid-python == 1.3.1',
         'pyOpenSSL == 23.2.0',
-        'urllib3 < 2.0.0'
+        'urllib3 < 3.0.0'
     ],
 )
