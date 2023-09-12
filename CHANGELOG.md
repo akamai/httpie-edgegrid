@@ -1,5 +1,11 @@
 # HTTPIE EDGEGRID RELEASE NOTES
 
+## 2.1.3 (2023-09-14)
+
+### Enhancements
+
+* Update `urllib3` and test dependencies
+
 ## 2.1.2 (2023-06-22)
 
 ### Bug fixes
