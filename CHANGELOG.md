@@ -1,5 +1,11 @@
 # HTTPIE EDGEGRID RELEASE NOTES
 
+## 2.1.4 (2024-06-06)
+
+### Enhancements
+
+* Updated `pyOpenSSL`, `pylint` and test dependencies
+
 ## 2.1.3 (2023-09-14)
 
 ### Enhancements
