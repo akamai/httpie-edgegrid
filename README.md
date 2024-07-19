@@ -1,107 +1,177 @@
-# httpie-edgegrid
+# EdgeGrid for HTTPie
 
 EdgeGrid plugin for [HTTPie](https://github.com/jkbr/httpie).
 
-## Installation
+This library implements an Authentication handler for HTTP requests using the [Akamai EdgeGrid Authentication](https://techdocs.akamai.com/developer/docs/authenticate-with-edgegrid) scheme for HTTPie.
 
-To install from sources:
+## Install
 
-``` bash
-$ python setup.py install
+You can use pip, a standard package manager used to install and maintain packages for Python to install Edgrid for HTTPie. pip works on Linux, macOS, and Windows and always provides the latest version of HTTPie. pip is already installed on Python v3.6 or later. You can download the latest Python version from [python.org](https://www.python.org/downloads/).
+
+Run this command to install the HTTPie authentication handler:
+
+```
+pip install httpie-edgegrid
 ```
 
-When using python 3 on Mac, replace python with python3:
+## Authentication
 
-``` bash
-$ python3 setup.py install
+We provide authentication credentials through an API client. Requests to the API are signed with a timestamp and are executed immediately.
+
+1. [Create authentication credentials](https://techdocs.akamai.com/developer/docs/set-up-authentication-credentials).
+   
+2. Place your credentials in an EdgeGrid resource file, `.edgerc`, under a heading of `[default]` at your local home directory or the home directory of a web-server user.
+   
+   ```
+    [default]
+    client_secret = C113nt53KR3TN6N90yVuAgICxIRwsObLi0E67/N8eRN=
+    host = akab-h05tnam3wl42son7nktnlnnx-kbob3i3v.luna.akamaiapis.net
+    access_token = akab-acc35t0k3nodujqunph3w7hzp7-gtm6ij
+    client_token = akab-c113ntt0k3n4qtari252bfxxbsl-yvsdj
+    ```
+
+3. Use your local `.edgerc` by providing the path to your resource file and credentials' section header.
+   
+   The `--edgegrid-config` argument is optional, as it  defaults to `~/.edgerc`.
+
+    ```bash
+    http --auth-type=edgegrid --edgegrid-config=<path/to/.edgerc> -a <credentials_section_name>: :/<api_endpoint>
+    ```
+
+## Use
+
+To use the library, provide the path to your `.edgerc`, your credentials section header, and the appropriate endpoint information.
+
+```bash
+$ http GET --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: :/identity-management/v3/user-profile \
+Accept: application/json'
+```
+> **Note:** The `METHOD` argument is optional, and when you don’t specify it, HTTPie defaults to:
+> 
+> - `GET` for requests without body
+> - `POST` for requests with body
+
+### Query string parameter
+
+When entering query parameters, pass them as key-value pairs separated with a double equal sign (`==`).
+
+```bash
+$ http GET --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: :/identity-management/v3/user-profile \
+authGrants==true \
+notifications==true \
+actions==true
 ```
 
-If you have problems installing from sources, you could use pip:
+### Headers
 
-``` bash
-$ pip install httpie-edgegrid
+Enter request headers as key-value pairs separated with a colon (`:`).
+
+> **Note:** You don't need to include the `Content-Type` and `Content-Length` headers. The authentication layer adds these values.
+
+```bash
+$ http GET --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: :/identity-management/v3/user-profile \
+Accept: application/json
 ```
 
-## Running tests in virtual environment
+### Body data
+
+You can use `printf` or `echo -n` to pipe simple data to the request.
+
+```bash
+$ printf '{
+  "contactType": "Billing",
+  "country": "USA",
+  "firstName": "John",
+  "lastName": "Smith",
+  "phone": "3456788765",
+  "preferredLanguage": "English",
+  "sessionTimeOut": 30,
+  "timeZone": "GMT",
+}'| http PUT --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: :/identity-management/v3/user-profile/basic-info \
+Content-Type: application/json \
+Accept: application/json
+```
+
+To pass a nested JSON object, see [HTTPie documentation](https://httpie.io/docs/cli/nested-json) for details.
+
+### Debug
+
+Use the `--verbose` argument to enable debugging and get additional information on the HTTP request and response.
+
+```
+$ http --verbose GET --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: :/identity-management/v3/user-profile
+```
+
+## Run tests in virtual environment
 
 To test in a [virtual
 environment](https://packaging.python.org/tutorials/installing-packages/#creating-virtual-environments),
 run:
 
-``` bash
-$ python3 -m venv venv
-$ . venv/bin/activate
-$ pip install -r requirements_dev.txt
-$ python -m unittest discover
-```
+1. Install the virtual environment.
+   
+   ```
+   $ pip install virtualenv
+   ```
 
-## Usage
+2. Initialize your environment in a new directory.
+   
+   ```
+   // Unix/macOS
+   python3 -m venv ~/Desktop/myenv
 
-The EdgeGrid plugin relies on a .edgerc credentials file that needs to be created in your home directory and organized by \[section\] following the format below. Each \[section\] can contain a different credentials set allowing you to store all of your credentials in a single .edgerc file.
+   // Windows
+   py -m venv ~/Desktop/myenv
+   ```
+   
+   This creates a `venv` in the specified directory as well as copies pip into it.
 
-```
-[default]
-client_secret = xxxx
-host = xxxx # Note, don't include the https:// here
-access_token = xxxx
-client_token = xxxx
-max-body = xxxx
-[section1]
-client_secret = xxxx
-host = xxxx # Note, don't include the https:// here
-access_token = xxxx
-client_token = xxxx
-max-body = xxxx
-```
+3. Activate your environment.
+   
+   ```
+   // Unix/macOS
+   source ~/Desktop/myenv/bin/activate
 
-Once you have the credentials set up, here is an example of what an Akamai OPEN API call would look like:
+   // Windows
+   ~/Desktop/myenv/Scripts/activate
+   ```
 
-``` bash
-% http --auth-type edgegrid -a <section_name>: :/<api_endpoint>
-```
+4. To recreate the environment, install the required dependencies within your project.
+   
+   ```
+   pip install -r requirements_dev.txt
+   ```
 
-### Example
+5. Initialize your tests.
+   
+   ```
+   // Unix/macOS
+   python -m unittest discover
 
-Making the diagnostic-tools API [locations]{.title-ref} call:
-
-``` bash
-% http --auth-type edgegrid -a default: :/edge-diagnostics/v1/edge-locations
-```
-
-## Parameters
-
-`--edgegrid-config`
-
-    Path to `.edgerc` credentials file (optional, defaults to `~/.edgerc`)
-
-## Environment variables
-
-`RC_PATH`
-
-    Path to `.edgerc` credentials file (optional, equivalent to the `--edgegrid-config` parameter)
+   // Windows
+   py -m unittest discover
+   ```
 
 ## Troubleshooting
 
-MacOS Sierra users have reported the error \"http: error: argument \--auth-type/-A: invalid choice: \'edgegrid\' (choose from \'basic\', \'digest\')\" after installation. Try installing using pip instead.
-
-The error \"ImportError: 'pyOpenSSL' module missing required functionality. Try upgrading to v0.14 or newer\" requires you to install an updated version of \`pyOpenSSL\`:
-
-``` bash
-$ pip install --ignore-installed pyOpenSSL
-```
-
-Since v0.9.4 of httpie the Mac homebrew package is build with python3. If you get an error for \"ImportError: No module named cryptography\" then probably you installed httpie-edgegrid with python2.7 (unsupported). To explicitly install with python3 use:
-
-``` bash
-$ sudo python3 setup.py install
-```
-
-Or with pip3:
-
-``` bash
-$ sudo pip3 install httpie-edgegrid
-```
+| Error message | Solution |
+| ------- | -------|
+| `http: error: argument --auth-type/-A: invalid choice: 'edgegrid' (choose from 'basic', 'digest')` | macOS Sierra users have reported this error after the package installation. To fix it, try installing the package using pip. |
+| `ImportError: 'pyOpenSSL' module missing required functionality. Try upgrading to v0.14 or newer` | If you get this error, then you're required to install an updated version of `pyOpenSSL`: <br /> <br /> `$ pip install --ignore-installed pyOpenSSL`|
+| `ImportError: No module named cryptography` | Starting with HTTPie v0.9.4, the Mac homebrew package is built with python3. If you get this error, then probably you've installed httpie-edgegrid with python2.7 (unsupported). To explicitly install with python3, run: <br /> <br /> `$ sudo python3 setup.py install` <br /> <br /> Or with pip3: <br /> <br /> `$ sudo pip3 install httpie-edgegrid` |
 
 ## Advisories
 
-Starting with HTTPie version 2.3.0 uploads are streamed, causing an issue posting JSON payloads as those don\'t include a content-length causing an error with the [Edgegrid authentication libraries](https://github.com/akamai/AkamaiOPEN-edgegrid-python). See [Issue #49](https://github.com/akamai/AkamaiOPEN-edgegrid-python/issues/49) for more details
+Starting with HTTPie v2.3.0, uploads are streamed, causing an issue with posting JSON payloads, as those don't include a content-length. As a result, there's an error with the [EdgeGrid authentication libraries](https://github.com/akamai/AkamaiOPEN-edgegrid-python). See [Issue #49](https://github.com/akamai/AkamaiOPEN-edgegrid-python/issues/49) for more details.
+
+## Reporting issues
+
+To report an issue or make a suggestion, create a new [GitHub issue](https://github.com/akamai/httpie-edgegrid/issues).
+
+## License
+
+Copyright 2023 Akamai Technologies, Inc. All rights reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
