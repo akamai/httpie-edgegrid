@@ -1,7 +1,7 @@
 """
  EdgeGrid auth plugin for HTTPie.
 
- Copyright 2022 Akamai Technologies, Inc. All Rights Reserved.
+ Copyright 2024 Akamai Technologies, Inc. All Rights Reserved.
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ from httpie.cli.options import ARGPARSE_QUALIFIER_MAP, Group, map_qualifiers
 from httpie.plugins import AuthPlugin
 
 __version__ = '1.0.6'
-__author__ = 'Kirsten Hunter'
 __licence__ = 'Apache 2.0'
 
 RC_PATH = ''

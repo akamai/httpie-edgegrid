@@ -19,9 +19,9 @@ pip install httpie-edgegrid
 We provide authentication credentials through an API client. Requests to the API are signed with a timestamp and are executed immediately.
 
 1. [Create authentication credentials](https://techdocs.akamai.com/developer/docs/set-up-authentication-credentials).
-   
+
 2. Place your credentials in an EdgeGrid resource file, `.edgerc`, under a heading of `[default]` at your local home directory or the home directory of a web-server user.
-   
+
    ```
     [default]
     client_secret = C113nt53KR3TN6N90yVuAgICxIRwsObLi0E67/N8eRN=
@@ -31,12 +31,18 @@ We provide authentication credentials through an API client. Requests to the API
     ```
 
 3. Use your local `.edgerc` by providing the path to your resource file and credentials' section header.
-   
-   The `--edgegrid-config` argument is optional, as it  defaults to `~/.edgerc`.
+
+   The `--edgegrid-config` argument is optional, as it defaults to `~/.edgerc`.
 
     ```bash
     http --auth-type=edgegrid --edgegrid-config=<path/to/.edgerc> -a <credentials_section_name>: :/<api_endpoint>
     ```
+
+   Alternatively, you can use an `RC_PATH` environment variable to point to the `.edgerc` resource file. It's equivalent to the `--edgegrid-config` argument.
+
+   ```bash
+   export RC_PATH=~/.edgerc
+   ```
 
 ## Use
 
@@ -53,7 +59,7 @@ Accept: application/json'
 
 ### Query string parameter
 
-When entering query parameters, pass them as key-value pairs separated with a double equal sign (`==`).
+When entering query parameters, pass them as name-value pairs separated with a double equal sign (`==`).
 
 ```bash
 $ http GET --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: :/identity-management/v3/user-profile \
@@ -64,7 +70,7 @@ actions==true
 
 ### Headers
 
-Enter request headers as key-value pairs separated with a colon (`:`).
+Enter request headers as name-value pairs separated with a colon (`:`).
 
 > **Note:** You don't need to include the `Content-Type` and `Content-Length` headers. The authentication layer adds these values.
 
@@ -104,18 +110,13 @@ $ http --verbose GET --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default
 
 ## Run tests in virtual environment
 
+The `venv` module is included in Python 3 by default.
+
 To test in a [virtual
-environment](https://packaging.python.org/tutorials/installing-packages/#creating-virtual-environments),
-run:
+environment](https://docs.python.org/3/library/venv.html):
 
-1. Install the virtual environment.
-   
-   ```
-   $ pip install virtualenv
-   ```
+1. Initialize your environment in a new directory.
 
-2. Initialize your environment in a new directory.
-   
    ```
    // Unix/macOS
    python3 -m venv ~/Desktop/myenv
@@ -123,11 +124,11 @@ run:
    // Windows
    py -m venv ~/Desktop/myenv
    ```
-   
+
    This creates a `venv` in the specified directory as well as copies pip into it.
 
-3. Activate your environment.
-   
+2. Activate your environment.
+
    ```
    // Unix/macOS
    source ~/Desktop/myenv/bin/activate
@@ -136,21 +137,29 @@ run:
    ~/Desktop/myenv/Scripts/activate
    ```
 
-4. To recreate the environment, install the required dependencies within your project.
-   
+   Your prompt will change to show you're working in a virtual environment, for example:
+
+   ```
+   (myenv) jsmith@abc-de12fg $
+   ```
+
+3. To recreate the environment, install the required dependencies within your project.
+
    ```
    pip install -r requirements_dev.txt
    ```
 
-5. Initialize your tests.
-   
+4. Run the tests.
+
    ```
    // Unix/macOS
-   python -m unittest discover
+   pytest -v
 
    // Windows
-   py -m unittest discover
+   py -m pytest -v
    ```
+
+5. To deactivate your environment, run the `deactivate` command.
 
 ## Troubleshooting
 
@@ -170,7 +179,7 @@ To report an issue or make a suggestion, create a new [GitHub issue](https://git
 
 ## License
 
-Copyright 2023 Akamai Technologies, Inc. All rights reserved.
+Copyright 2024 Akamai Technologies, Inc. All rights reserved.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
 

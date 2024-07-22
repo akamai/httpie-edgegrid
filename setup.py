@@ -18,8 +18,6 @@ setup(
     python_requires=">=3.7",
     long_description=get_readme(),
     version='2.1.4',
-    author='Developer Experience Akamai',
-    author_email='devrel@akamai.com',
     license='Apache 2.0',
     url='https://github.com/akamai/httpie-edgegrid',
     download_url='https://github.com/akamai/httpie-edgegrid',
