@@ -35,7 +35,7 @@ We provide authentication credentials through an API client. Requests to the API
    The `--edgegrid-config` argument is optional, as it defaults to `~/.edgerc`.
 
     ```bash
-    http --auth-type=edgegrid --edgegrid-config=<path/to/.edgerc> -a <credentials_section_name>: :/<api_endpoint>
+    http --auth-type=edgegrid --edgegrid-config=<path/to/.edgerc> -a <credentials_section_name>: <METHOD> :/<api_endpoint>
     ```
 
    Alternatively, you can use an `RC_PATH` environment variable to point to the `.edgerc` resource file. It's equivalent to the `--edgegrid-config` argument.
@@ -49,8 +49,7 @@ We provide authentication credentials through an API client. Requests to the API
 To use the library, provide the path to your `.edgerc`, your credentials section header, and the appropriate endpoint information.
 
 ```bash
-$ http GET --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: :/identity-management/v3/user-profile \
-Accept: application/json'
+$ http --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: GET :/identity-management/v3/user-profile Accept:application/json
 ```
 > **Note:** The `METHOD` argument is optional, and when you don’t specify it, HTTPie defaults to:
 > 
@@ -62,7 +61,7 @@ Accept: application/json'
 When entering query parameters, pass them as name-value pairs separated with a double equal sign (`==`).
 
 ```bash
-$ http GET --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: :/identity-management/v3/user-profile \
+$ http --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: GET :/identity-management/v3/user-profile \
 authGrants==true \
 notifications==true \
 actions==true
@@ -75,8 +74,7 @@ Enter request headers as name-value pairs separated with a colon (`:`).
 > **Note:** You don't need to include the `Content-Type` and `Content-Length` headers. The authentication layer adds these values.
 
 ```bash
-$ http GET --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: :/identity-management/v3/user-profile \
-Accept: application/json
+$ http --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: GET :/identity-management/v3/user-profile Accept:application/json
 ```
 
 ### Body data
@@ -93,9 +91,9 @@ $ printf '{
   "preferredLanguage": "English",
   "sessionTimeOut": 30,
   "timeZone": "GMT",
-}'| http PUT --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: :/identity-management/v3/user-profile/basic-info \
-Content-Type: application/json \
-Accept: application/json
+}'| http --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: PUT :/identity-management/v3/user-profile/basic-info \
+Content-Type:application/json \
+Accept:application/json
 ```
 
 To pass a nested JSON object, see [HTTPie documentation](https://httpie.io/docs/cli/nested-json) for details.
@@ -105,15 +103,14 @@ To pass a nested JSON object, see [HTTPie documentation](https://httpie.io/docs/
 Use the `--verbose` argument to enable debugging and get additional information on the HTTP request and response.
 
 ```
-$ http --verbose GET --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: :/identity-management/v3/user-profile
+$ http --verbose --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: GET :/identity-management/v3/user-profile
 ```
 
 ## Run tests in virtual environment
 
 The `venv` module is included in Python 3 by default.
 
-To test in a [virtual
-environment](https://docs.python.org/3/library/venv.html):
+To test in a [virtual environment](https://docs.python.org/3/library/venv.html):
 
 1. Initialize your environment in a new directory.
 
