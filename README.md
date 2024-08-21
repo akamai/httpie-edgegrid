@@ -6,9 +6,15 @@ This library implements an Authentication handler for HTTP requests using the [A
 
 ## Install
 
-You can use pip, a standard package manager used to install and maintain packages for Python to install Edgrid for HTTPie. pip works on Linux, macOS, and Windows and always provides the latest version of HTTPie. pip is already installed on Python v3.6 or later. You can download the latest Python version from [python.org](https://www.python.org/downloads/).
+To use the library, you need to have Python 3.6 or later installed on your system.
 
-Run this command to install the HTTPie authentication handler:
+Then, install the `httpie-edgegrid` authentication handler from sources by running this command from the project root directory:
+
+   ```
+   pip install .
+   ```
+
+Alternatively, you can install it from PyPI (Python Package Index) by running:
 
 ```
 pip install httpie-edgegrid
@@ -16,11 +22,11 @@ pip install httpie-edgegrid
 
 ## Authentication
 
-We provide authentication credentials through an API client. Requests to the API are signed with a timestamp and are executed immediately.
+You can obtain the authentication credentials through an API client. Requests to the API are marked with a timestamp and a signature and are executed immediately.
 
 1. [Create authentication credentials](https://techdocs.akamai.com/developer/docs/set-up-authentication-credentials).
 
-2. Place your credentials in an EdgeGrid resource file, `.edgerc`, under a heading of `[default]` at your local home directory or the home directory of a web-server user.
+2. Place your credentials in an EdgeGrid resource file, `.edgerc`, under a heading of `[default]` at your local home directory.
 
    ```
     [default]
@@ -41,31 +47,36 @@ We provide authentication credentials through an API client. Requests to the API
    Alternatively, you can use an `RC_PATH` environment variable to point to the `.edgerc` resource file. It's equivalent to the `--edgegrid-config` argument.
 
    ```bash
-   export RC_PATH=~/.edgerc
+   export RC_PATH=<path/to/.edgerc>
    ```
 
 ## Use
 
-To use the library, provide the path to your `.edgerc`, your credentials section header, and the appropriate endpoint information.
+To use the library, provide your credentials section header and the appropriate endpoint information.
 
 ```bash
-$ http --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: GET :/identity-management/v3/user-profile Accept:application/json
+$ http --auth-type=edgegrid -a default: GET :/identity-management/v3/user-profile
 ```
-> **Note:** The `METHOD` argument is optional, and when you don’t specify it, HTTPie defaults to:
-> 
+> **Note:** You can omit the `METHOD` argument. If you don't specify it, HTTPie sets it by default to:
+>
 > - `GET` for requests without body
 > - `POST` for requests with body
+
+For details, see the [HTTPie documentation](https://httpie.io/docs/cli/optional-get-and-post).
 
 ### Query string parameter
 
 When entering query parameters, pass them as name-value pairs separated with a double equal sign (`==`).
 
 ```bash
-$ http --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: GET :/identity-management/v3/user-profile \
-authGrants==true \
-notifications==true \
-actions==true
+$ http --auth-type=edgegrid -a default: GET :/identity-management/v3/user-profile \
+   authGrants==true \
+   notifications==true \
+   actions==true
 ```
+
+For detail on adding query string parameters, see [HTTPie documentation](https://httpie.io/docs/cli/querystring-parameters).
+
 
 ### Headers
 
@@ -74,12 +85,31 @@ Enter request headers as name-value pairs separated with a colon (`:`).
 > **Note:** You don't need to include the `Content-Type` and `Content-Length` headers. The authentication layer adds these values.
 
 ```bash
-$ http --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: GET :/identity-management/v3/user-profile Accept:application/json
+$ http --auth-type=edgegrid -a default: GET :/identity-management/v3/user-profile \
+   Accept:application/json
 ```
+
+For detail on setting headers, see [HTTPie documentation](https://httpie.io/docs/cli/http-headers).
 
 ### Body data
 
-You can use `printf` or `echo -n` to pipe simple data to the request.
+Use the [HTTPie syntax](https://httpie.io/docs/cli/non-string-json-fields) to pass simple JSON data in the request.
+
+```bash
+$ http --auth-type=edgegrid -a default: PUT :/identity-management/v3/user-profile/basic-info \
+  contractType=Billing \
+  country=USA \
+  firstName=John \
+  lastName=Smith \
+  phone=3456788765 \
+  preferredLanguage=English \
+  sessionTimeOut:=30 \
+  timeZone=GMT \
+  Content-Type:application/json \
+  Accept:application/json
+```
+
+You can also use `printf` or `echo -n` to pipe simple data to the request.
 
 ```bash
 $ printf '{
@@ -91,20 +121,24 @@ $ printf '{
   "preferredLanguage": "English",
   "sessionTimeOut": 30,
   "timeZone": "GMT",
-}'| http --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: PUT :/identity-management/v3/user-profile/basic-info \
-Content-Type:application/json \
-Accept:application/json
+}'| http --auth-type=edgegrid -a default: PUT :/identity-management/v3/user-profile/basic-info \
+   Content-Type:application/json \
+   Accept:application/json
 ```
 
 To pass a nested JSON object, see [HTTPie documentation](https://httpie.io/docs/cli/nested-json) for details.
 
+> **NOTE:** When testing or exploring this endpoint, make sure you don't override settings for the dev test user.
+
 ### Debug
 
-Use the `--verbose` argument to enable debugging and get additional information on the HTTP request and response.
+Use the `--verbose` argument to enable debugging and get additional information on the HTTP request.
 
 ```
-$ http --verbose --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: GET :/identity-management/v3/user-profile
+$ http --verbose --auth-type=edgegrid -a default: GET :/identity-management/v3/user-profile
 ```
+
+In case of the HTTPie plugin's crash, add the `--traceback` argument to the request. It prints out the request's detailed stack trace. It's useful for [reporting issues](#reporting-issues).
 
 ## Run tests in virtual environment
 
@@ -164,11 +198,7 @@ To test in a [virtual environment](https://docs.python.org/3/library/venv.html):
 | ------- | -------|
 | `http: error: argument --auth-type/-A: invalid choice: 'edgegrid' (choose from 'basic', 'digest')` | macOS Sierra users have reported this error after the package installation. To fix it, try installing the package using pip. |
 | `ImportError: 'pyOpenSSL' module missing required functionality. Try upgrading to v0.14 or newer` | If you get this error, then you're required to install an updated version of `pyOpenSSL`: <br /> <br /> `$ pip install --ignore-installed pyOpenSSL`|
-| `ImportError: No module named cryptography` | Starting with HTTPie v0.9.4, the Mac homebrew package is built with python3. If you get this error, then probably you've installed httpie-edgegrid with python2.7 (unsupported). To explicitly install with python3, run: <br /> <br /> `$ sudo python3 setup.py install` <br /> <br /> Or with pip3: <br /> <br /> `$ sudo pip3 install httpie-edgegrid` |
-
-## Advisories
-
-Starting with HTTPie v2.3.0, uploads are streamed, causing an issue with posting JSON payloads, as those don't include a content-length. As a result, there's an error with the [EdgeGrid authentication libraries](https://github.com/akamai/AkamaiOPEN-edgegrid-python). See [Issue #49](https://github.com/akamai/AkamaiOPEN-edgegrid-python/issues/49) for more details.
+| `ImportError: No module named cryptography` | Starting with HTTPie v0.9.4, the Mac homebrew package is built with python3. If you get this error, then probably you've installed httpie-edgegrid with python2.7 (unsupported). To explicitly install with python3, run: <br /> <br /> `$ pip3 install .` <br /> <br /> Or: <br /> <br /> `$ pip3 install httpie-edgegrid` |
 
 ## Reporting issues
 

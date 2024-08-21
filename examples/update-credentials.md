@@ -6,9 +6,9 @@ To run this example:
 
 2. Copy the below http statement and paste it to the Terminal or shell instance.
 
-3. Specify the location of your `.edgerc` file and the section header of the set of credentials to use.
+3. Specify the section header of the set of credentials to use.
 
-   The defaults here expect the `.edgerc` at your home directory and use the credentials under the heading of default.
+   The `--edgegrid-config` argument for the location of your `.edgerc` file is optional, as it defaults to `~/.edgerc`.
 
 4. Add the `credentialId` for the set of credentials created using the create example as a path parameter.
 
@@ -20,12 +20,11 @@ To run this example:
 
 For more information on the call used in this example, see https://techdocs.akamai.com/iam-api/reference/put-self-credential.
 
-```
-$ printf '{
-  "description": "Update this credential",
-  "expiresOn": "2024-06-11T23:06:59.000Z",
-  "status": "INACTIVE"
-}'| http --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: PUT :/identity-management/v3/api-clients/self/credentials/123456 \
- Accept:application/json \
- Content-Type:application/json
+ ```
+$ http --auth-type=edgegrid -a default: PUT :/identity-management/v3/api-clients/self/credentials/123456 \
+   description=Update-this-credential \
+   expiresOn=2024-12-11T23:06:59.000Z \
+   status=INACTIVE
+   Accept:application/json \
+   Content-Type:application/json
  ```

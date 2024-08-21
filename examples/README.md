@@ -9,7 +9,6 @@ To run any of the files:
 1. Open a Terminal or shell instance.
 2. Copy the http statement from the `.md` file and paste it to the Terminal or shell instance.
 
-   - Specify the location of your `.edgerc` file. The default is set to the home directory.
    - Provide the section header for the set of credentials you'd like to use. The default is `default`.
    - For update and delete operations, replace the dummy `credentialId` with your valid `credentialId`.
 

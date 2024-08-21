@@ -6,9 +6,9 @@ To run this example:
 
 2. Copy the below http statement and paste it to the Terminal or shell instance.
 
-3. Specify the location of your `.edgerc` file and the section header of the set of credentials to use.
+3. Specify the section header of the set of credentials to use.
 
-   The defaults here expect the `.edgerc` at your home directory and use the credentials under the heading of default.
+   The `--edgegrid-config` argument for the location of your `.edgerc` file is optional, as it defaults to `~/.edgerc`.
 
 4. Add the `credentialId` from the update example to the path. You can only delete inactive credentials. Sending the request on an active set will return a 400. Use the update credentials example for deactivation.
 
@@ -19,5 +19,5 @@ To run this example:
 For more information on the call used in this example, see https://techdocs.akamai.com/iam-api/reference/delete-self-credential.
 
 ```
-$ http --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: DELETE :/identity-management/v3/api-clients/self/credentials/123456 Accept:application/json
+$ http --auth-type=edgegrid -a default: DELETE :/identity-management/v3/api-clients/self/credentials/123456
 ```

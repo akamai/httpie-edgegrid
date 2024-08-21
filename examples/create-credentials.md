@@ -6,9 +6,9 @@ To run this example:
 
 2. Copy the below http statement and paste it to the Terminal or shell instance.
 
-3. Specify the location of your `.edgerc` file and the section header of the set of credentials to use.
+3. Specify the section header of the set of credentials to use.
 
-   The defaults here expect the `.edgerc` at your home directory and use the credentials under the heading of default.
+   The `--edgegrid-config` argument for the location of your `.edgerc` file is optional, as it defaults to `~/.edgerc`.
 
 4. Press `Enter` to run the http statement.
 
@@ -17,5 +17,5 @@ To run this example:
 For more information on the call used in this example, see https://techdocs.akamai.com/iam-api/reference/post-self-credentials.
 
 ```
-$ http --auth-type=edgegrid --edgegrid-config=~/.edgerc -a default: POST :/identity-management/v3/api-clients/self/credentials Accept:application/json
+$ http --auth-type=edgegrid -a default: POST :/identity-management/v3/api-clients/self/credentials
 ```
