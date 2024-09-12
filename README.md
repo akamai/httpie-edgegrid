@@ -109,26 +109,7 @@ $ http --auth-type=edgegrid -a default: PUT :/identity-management/v3/user-profil
   Accept:application/json
 ```
 
-You can also use `printf` or `echo -n` to pipe simple data to the request.
-
-```bash
-$ printf '{
-  "contactType": "Billing",
-  "country": "USA",
-  "firstName": "John",
-  "lastName": "Smith",
-  "phone": "3456788765",
-  "preferredLanguage": "English",
-  "sessionTimeOut": 30,
-  "timeZone": "GMT",
-}'| http --auth-type=edgegrid -a default: PUT :/identity-management/v3/user-profile/basic-info \
-   Content-Type:application/json \
-   Accept:application/json
-```
-
 To pass a nested JSON object, see [HTTPie documentation](https://httpie.io/docs/cli/nested-json) for details.
-
-> **NOTE:** When testing or exploring this endpoint, make sure you don't override settings for the dev test user.
 
 ### Debug
 
@@ -208,6 +189,6 @@ To report an issue or make a suggestion, create a new [GitHub issue](https://git
 
 Copyright 2024 Akamai Technologies, Inc. All rights reserved.
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use these files except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.

@@ -9,7 +9,7 @@ from httpie.cli.options import ARGPARSE_QUALIFIER_MAP, Group, map_qualifiers
 from httpie.plugins import AuthPlugin
 
 __version__ = '1.0.6'
-__licence__ = 'Apache 2.0'
+__license__ = 'Apache 2.0'
 
 RC_PATH = ''
 
