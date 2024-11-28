@@ -1,5 +1,11 @@
 # HTTPIE EDGEGRID RELEASE NOTES
 
+## 2.X.X (X-X-X)
+
+### Bug fixes
+
+* Fixed installation failure with httpie cli ([I#76](https://github.com/akamai/httpie-edgegrid/issues/76))
+
 ## 2.1.4 (2024-06-06)
 
 ### Enhancements
