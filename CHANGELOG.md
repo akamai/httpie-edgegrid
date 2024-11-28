@@ -1,52 +1,52 @@
-# HTTPIE EDGEGRID RELEASE NOTES
+# RELEASE NOTES
 
-## 2.X.X (X-X-X)
+## 2.X.X (X X, X)
 
-### Bug fixes
+### BUG FIXES:
 
-* Fixed installation failure with httpie cli ([I#76](https://github.com/akamai/httpie-edgegrid/issues/76))
+* Fixed installation failure with httpie cli ([I#76](https://github.com/akamai/httpie-edgegrid/issues/76)).
 
-## 2.1.4 (2024-06-06)
+## 2.1.4 (Jun 6, 2024)
 
-### Enhancements
+### FEATURES/ENHANCEMENTS:
 
-* Updated `pyOpenSSL`, `pylint` and test dependencies
+* Updated the `pyOpenSSL`, `pylint`, and test dependencies.
 
-## 2.1.3 (2023-09-14)
+## 2.1.3 (Sep 14, 2023)
 
-### Enhancements
+### FEATURES/ENHANCEMENTS:
 
-* Update `urllib3` and test dependencies
+* Updated the `urllib3` and test dependencies.
 
-## 2.1.2 (2023-06-22)
+## 2.1.2 (Jun 22, 2023)
 
-### Bug fixes
+### FEATURES/ENHANCEMENTS:
 
-* Fix bug returning unexpected error when performing basic API call ([I#34](https://github.com/akamai/httpie-edgegrid/issues/34))
+* Updated the `httpie` and `pyOpenSSL` dependencies.
 
-### Enhancements
+### BUG FIXES:
 
-* Update `httpie` and `pyOpenSSL` dependencies
+* Fixed a bug related to returning an unexpected error when performing a basic API call ([I#34](https://github.com/akamai/httpie-edgegrid/issues/34)).
 
-## 2.1.1 (2022-09-27)
+## 2.1.1 (Sep 27, 2022)
 
-### Enhancements
+### FEATURES/ENHANCEMENTS:
 
-* Update edgegrid-python dependency
+* Updated the `edgegrid-python` dependency.
 
-## 2.1.0 (2022-08-30)
+## 2.1.0 (Aug 30, 2022)
 
-### Enhancements
+### FEATURES/ENHANCEMENTS:
 
-* Update edgegrid-python dependency
+* Updated the `edgegrid-python` dependency.
 
-## 2.0.0 (2022-04-27)
+## 2.0.0 (Jul 22, 2022)
 
-### BREAKING CHANGES
+### BREAKING CHANGES:
 
-* Dropped Python 2.7 support
+* Dropped Python 2.7 support.
 
-### Enhancements
+### FEATURES/ENHANCEMENTS:
 
-* New optional parameter: `--edgegrid-config`, the path for the `.edgerc` credentials file. It defaults to `~/.edgerc`
-* New `RC_PATH` environment variable, equivalent to the `--edgegrid-config` parameter
+* Added the new optional `--edgegrid-config` parameter for providing a path for the `.edgerc` credentials file. It defaults to `~/.edgerc`.
+* Added the new `RC_PATH` environment variable, equivalent to the `--edgegrid-config` parameter.

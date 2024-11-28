@@ -11,6 +11,8 @@ To run this example:
    The `--edgegrid-config` argument for the location of your `.edgerc` file is optional, as it defaults to `~/.edgerc`.
 
 4. Add the `credentialId` from the update example to the path. You can only delete inactive credentials. Sending the request on an active set will return a 400. Use the update credentials example for deactivation.
+   
+   **Important:** Don't use your actual credentials for this operation. Otherwise, you'll block your access to the Akamai APIs.
 
 5. Press `Enter` to run the http statement.
 

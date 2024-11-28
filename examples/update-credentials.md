@@ -13,6 +13,8 @@ To run this example:
 4. Add the `credentialId` for the set of credentials created using the create example as a path parameter.
 
 5. Edit the `expiresOn` date to today's date. The date cannot be more than two years out or it will return a 400. Optionally, you can change the description value.
+   
+   **Important:** Don't use your actual credentials for this operation. Otherwise, you'll block your access to the Akamai APIs.
 
 6. Press `Enter` to run the http statement.
 
