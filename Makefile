@@ -24,6 +24,10 @@ lint:
 test:
 	@. venv/bin/activate; pytest -v --junitxml test/tests.xml
 
+.PHONY: test-docker
+test-docker:
+	sh ci/test_with_docker.sh
+
 .PHONY: coverage
 coverage:
 	@. venv/bin/activate; pytest --cov-report xml:test/coverage/cobertura-coverage.xml --cov=gen_edgerc --cov=httpie_edgegrid test/

@@ -1,3 +1,9 @@
+"""EdgeGrid plugin for HTTPie.
+
+This library implements an Authentication handler for HTTP requests using the Akamai EdgeGrid
+Authentication scheme for HTTPie.
+"""
+
 import argparse
 import configparser
 import os

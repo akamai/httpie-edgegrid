@@ -1,9 +1,9 @@
 #! /usr/bin/env python
+"""This script will generate a ~/.edgerc credentials file based on
+the output of the "{OPEN} API Administration" tool in Luna Control Center.
 
-# This script will generate a ~/.edgerc credentials file based on
-# the output of the "{OPEN} API Administration" tool in Luna Control Center.
-#
-# Usage: python gen_edgerc.py -s <section_name> -f <export_file>
+Usage: python gen_edgerc.py -s <section_name> -f <export_file>
+"""
 
 import argparse
 import os
