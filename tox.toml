@@ -4,7 +4,7 @@ no_package = true
 
 [env_run_base]
 description = "run unit tests"
-deps = ["-r requirements_dev.txt", "-e ."]
+deps = ["-r dev-requirements.txt", "-e ."]
 commands_pre = [["pylint", "*.py"]]
 # For simplicity, pass only the latest cov report to Cobertura (previous will be overwritten)
 commands = [["pytest", "-v", "--junit-xml=test/{envname}_tests.xml", "-o", "junit_family=xunit2",

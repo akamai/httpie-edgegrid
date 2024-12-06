@@ -1,10 +1,17 @@
 # RELEASE NOTES
 
-## 2.X.X (X X, X)
+## 2.2.0 (Dec 9, 2024)
+
+### FEATURES/ENHANCEMENTS:
+
+* Discontinued support for Python <= 3.8; Python 3.9 is now the minimum supported version.
+* Updated several dependencies in `setup.py`.
+* Started generating the `requirements.txt` and `dev-requirements.txt` files using `pip-compile`,
+  so that they contain the full set of project dependencies.
 
 ### BUG FIXES:
 
-* Fixed installation failure with httpie cli ([I#76](https://github.com/akamai/httpie-edgegrid/issues/76)).
+* Fixed installation failure with HTTPie CLI ([I#76](https://github.com/akamai/httpie-edgegrid/issues/76)).
 
 ## 2.1.4 (Jun 6, 2024)
 

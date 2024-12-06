@@ -45,7 +45,7 @@ class EdgeGridSetterAction(argparse.Action):
     """
     Action used to set RC_PATH variable
     """
-    def __init__(self, #pylint: disable-msg=too-many-arguments
+    def __init__(self, #pylint: disable-msg=too-many-arguments, too-many-positional-arguments
                  option_strings,
                  dest,
                  nargs=None,

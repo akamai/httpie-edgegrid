@@ -6,7 +6,7 @@ This library implements an Authentication handler for HTTP requests using the [A
 
 ## Install
 
-To use the library, you need to have Python 3.6 or later installed on your system.
+To use the library, you need to have Python 3.9 or later installed on your system.
 
 Then, install the `httpie-edgegrid` authentication handler from sources by running this command from the project root directory:
 
@@ -158,7 +158,7 @@ To test in a [virtual environment](https://docs.python.org/3/library/venv.html):
 3. To recreate the environment, install the required dependencies within your project.
 
    ```
-   pip install -r requirements_dev.txt
+   pip install -r dev-requirements.txt
    ```
 
 4. Run the tests.
