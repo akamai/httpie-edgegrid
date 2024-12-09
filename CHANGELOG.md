@@ -1,46 +1,59 @@
-# HTTPIE EDGEGRID RELEASE NOTES
+# RELEASE NOTES
 
-## 2.1.4 (2024-06-06)
+## 2.2.0 (Dec 9, 2024)
 
-### Enhancements
+### FEATURES/ENHANCEMENTS:
 
-* Updated `pyOpenSSL`, `pylint` and test dependencies
+* Discontinued support for Python <= 3.8; Python 3.9 is now the minimum supported version.
+* Updated several dependencies in `setup.py`.
+* Started generating the `requirements.txt` and `dev-requirements.txt` files using `pip-compile`,
+  so that they contain the full set of project dependencies.
 
-## 2.1.3 (2023-09-14)
+### BUG FIXES:
 
-### Enhancements
+* Fixed installation failure with HTTPie CLI ([I#76](https://github.com/akamai/httpie-edgegrid/issues/76)).
 
-* Update `urllib3` and test dependencies
+## 2.1.4 (Jun 6, 2024)
 
-## 2.1.2 (2023-06-22)
+### FEATURES/ENHANCEMENTS:
 
-### Bug fixes
+* Updated the `pyOpenSSL`, `pylint`, and test dependencies.
 
-* Fix bug returning unexpected error when performing basic API call ([I#34](https://github.com/akamai/httpie-edgegrid/issues/34))
+## 2.1.3 (Sep 14, 2023)
 
-### Enhancements
+### FEATURES/ENHANCEMENTS:
 
-* Update `httpie` and `pyOpenSSL` dependencies
+* Updated the `urllib3` and test dependencies.
 
-## 2.1.1 (2022-09-27)
+## 2.1.2 (Jun 22, 2023)
 
-### Enhancements
+### FEATURES/ENHANCEMENTS:
 
-* Update edgegrid-python dependency
+* Updated the `httpie` and `pyOpenSSL` dependencies.
 
-## 2.1.0 (2022-08-30)
+### BUG FIXES:
 
-### Enhancements
+* Fixed a bug related to returning an unexpected error when performing a basic API call ([I#34](https://github.com/akamai/httpie-edgegrid/issues/34)).
 
-* Update edgegrid-python dependency
+## 2.1.1 (Sep 27, 2022)
 
-## 2.0.0 (2022-04-27)
+### FEATURES/ENHANCEMENTS:
 
-### BREAKING CHANGES
+* Updated the `edgegrid-python` dependency.
 
-* Dropped Python 2.7 support
+## 2.1.0 (Aug 30, 2022)
 
-### Enhancements
+### FEATURES/ENHANCEMENTS:
 
-* New optional parameter: `--edgegrid-config`, the path for the `.edgerc` credentials file. It defaults to `~/.edgerc`
-* New `RC_PATH` environment variable, equivalent to the `--edgegrid-config` parameter
+* Updated the `edgegrid-python` dependency.
+
+## 2.0.0 (Jul 22, 2022)
+
+### BREAKING CHANGES:
+
+* Dropped Python 2.7 support.
+
+### FEATURES/ENHANCEMENTS:
+
+* Added the new optional `--edgegrid-config` parameter for providing a path for the `.edgerc` credentials file. It defaults to `~/.edgerc`.
+* Added the new `RC_PATH` environment variable, equivalent to the `--edgegrid-config` parameter.

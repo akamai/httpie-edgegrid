@@ -5,21 +5,18 @@ which can be found at httpie-edgegrid's PyPI URL: https://pypi.org/project/httpi
 
 from setuptools import setup
 
-def get_readme() -> str:
+def get_readme():
     """Returns the content of README.md"""
     with open('README.md') as readme:
-        content = readme.read()
-
-    return content.strip()
+        return readme.read()
 
 setup(
     name='httpie-edgegrid',
     description='Edgegrid plugin for HTTPie.',
-    python_requires=">=3.7",
+    python_requires=">=3.9",
     long_description=get_readme(),
-    version='2.1.4',
-    author='Developer Experience Akamai',
-    author_email='devrel@akamai.com',
+    long_description_content_type="text/markdown",
+    version='2.2.0',
     license='Apache 2.0',
     url='https://github.com/akamai/httpie-edgegrid',
     download_url='https://github.com/akamai/httpie-edgegrid',
@@ -31,9 +28,16 @@ setup(
         ]
     },
     install_requires=[
-        'httpie == 3.2.2',
-        'edgegrid-python == 1.3.1',
-        'pyOpenSSL == 24.1.0',
-        'urllib3 < 3.0.0'
+        'httpie >= 3.0.0',
+        'edgegrid-python >= 1.3.1',
+        'pyOpenSSL >= 22.0.0',
+        'urllib3 >= 2.0.2'
     ],
+    extras_require={
+        'dev': [
+            'pylint>=2.15.0',
+            'pytest>=7.0.0',
+            'pytest-cov>=4.0.0'
+        ],
+    },
 )

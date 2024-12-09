@@ -1,4 +1,4 @@
-PYTHON = python3.10
+PYTHON = python3
 
 .PHONY: help
 help:
@@ -10,7 +10,7 @@ help:
 
 .PHONY: install
 install:
-	$(PYTHON) -m venv venv; . venv/bin/activate; $(PYTHON) -m pip install -r requirements_dev.txt
+	$(PYTHON) -m venv venv; . venv/bin/activate; $(PYTHON) -m pip install -r dev-requirements.txt
 
 .PHONY: clean
 clean:
@@ -23,6 +23,10 @@ lint:
 .PHONY: test
 test:
 	@. venv/bin/activate; pytest -v --junitxml test/tests.xml
+
+.PHONY: test-docker
+test-docker:
+	sh ci/test_with_docker.sh
 
 .PHONY: coverage
 coverage:
