@@ -4,7 +4,7 @@
 #
 #    pip-compile --extra=dev --output-file=dev-requirements.txt
 #
-astroid==3.3.5
+astroid==3.3.7
     # via pylint
 certifi==2024.8.30
     # via requests
