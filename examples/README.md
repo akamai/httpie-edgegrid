@@ -12,7 +12,7 @@ To run any of the files:
    - Provide the section header for the set of credentials you'd like to use. The default is `default`.
    - For update and delete operations, replace the dummy `credentialId` with your valid `credentialId`.
 
-   > **Important:** Don't use your actual credentials for the update (inactivation) and delete operations. Otherwise, you'll block your access to the Akamai APIs.
+   > **Important:** Don't use the credentials you're actively using when running the update (inactivation) and delete operations. Otherwise, you'll block your access to the Akamai APIs.
 
 3. Press `Enter` to run the http statement.
 
