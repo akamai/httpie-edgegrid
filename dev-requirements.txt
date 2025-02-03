@@ -58,7 +58,7 @@ pygments==2.18.0
     # via
     #   httpie
     #   rich
-pylint==3.3.2
+pylint==3.3.4
     # via httpie-edgegrid (setup.py)
 pyopenssl==24.3.0
     # via
