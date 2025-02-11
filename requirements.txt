@@ -12,7 +12,7 @@ charset-normalizer==3.4.0
     # via
     #   httpie
     #   requests
-cryptography==44.0.0
+cryptography==44.0.1
     # via pyopenssl
 defusedxml==0.7.1
     # via httpie
