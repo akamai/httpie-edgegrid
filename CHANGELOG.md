@@ -1,5 +1,11 @@
 # RELEASE NOTES
 
+## x.x.x (x, x)
+
+### BUG FIXES:
+
+* Removed unused dependencies
+
 ## 2.2.0 (Dec 9, 2024)
 
 ### FEATURES/ENHANCEMENTS:
