@@ -86,7 +86,7 @@ rich==13.9.4
     # via httpie
 tomlkit==0.13.2
     # via pylint
-urllib3==2.2.3
+urllib3==2.4.0
     # via
     #   edgegrid-python
     #   httpie-edgegrid (setup.py)

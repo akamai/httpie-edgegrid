@@ -58,7 +58,7 @@ requests-toolbelt==1.0.0
     #   httpie
 rich==13.9.4
     # via httpie
-urllib3==2.2.3
+urllib3==2.4.0
     # via
     #   edgegrid-python
     #   httpie-edgegrid (setup.py)
