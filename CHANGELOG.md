@@ -1,6 +1,6 @@
 # RELEASE NOTES
 
-## x.x.x (x, x)
+## 2.2.1 (Apr 28, 2025)
 
 ### FEATURES/ENHANCEMENTS:
 
