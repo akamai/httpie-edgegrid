@@ -2,9 +2,13 @@
 
 ## x.x.x (x, x)
 
+### FEATURES/ENHANCEMENTS:
+
+* Updated various dependencies.
+
 ### BUG FIXES:
 
-* Removed unused dependencies
+* Removed unused dependencies.
 
 ## 2.2.0 (Dec 9, 2024)
 
