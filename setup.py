@@ -16,7 +16,7 @@ setup(
     python_requires=">=3.9",
     long_description=get_readme(),
     long_description_content_type="text/markdown",
-    version='2.2.0',
+    version='2.2.1',
     license='Apache 2.0',
     url='https://github.com/akamai/httpie-edgegrid',
     download_url='https://github.com/akamai/httpie-edgegrid',
@@ -29,9 +29,7 @@ setup(
     },
     install_requires=[
         'httpie >= 3.0.0',
-        'edgegrid-python >= 1.3.1',
-        'pyOpenSSL >= 22.0.0',
-        'urllib3 >= 2.0.2'
+        'edgegrid-python >= 2.0.1',
     ],
     extras_require={
         'dev': [

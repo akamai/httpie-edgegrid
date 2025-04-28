@@ -1,5 +1,15 @@
 # RELEASE NOTES
 
+## 2.2.1 (Apr 28, 2025)
+
+### FEATURES/ENHANCEMENTS:
+
+* Updated various dependencies.
+
+### BUG FIXES:
+
+* Removed unused dependencies.
+
 ## 2.2.0 (Dec 9, 2024)
 
 ### FEATURES/ENHANCEMENTS:
