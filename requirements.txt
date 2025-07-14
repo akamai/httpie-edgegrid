@@ -4,9 +4,9 @@
 #
 #    pip-compile
 #
-certifi==2025.1.31
+certifi==2025.6.15
     # via requests
-charset-normalizer==3.4.1
+charset-normalizer==3.4.2
     # via
     #   httpie
     #   requests
@@ -41,7 +41,7 @@ requests-toolbelt==1.0.0
     #   httpie
 rich==14.0.0
     # via httpie
-urllib3==2.4.0
+urllib3==2.5.0
     # via requests
 
 # The following packages are considered to be unsafe in a requirements file:
