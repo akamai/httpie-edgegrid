@@ -4,15 +4,15 @@
 #
 #    pip-compile
 #
-certifi==2025.1.31
+certifi==2025.7.14
     # via requests
-charset-normalizer==3.4.1
+charset-normalizer==3.4.2
     # via
     #   httpie
     #   requests
 defusedxml==0.7.1
     # via httpie
-edgegrid-python==2.0.1
+edgegrid-python==2.0.2
     # via httpie-edgegrid (setup.py)
 httpie==3.2.4
     # via httpie-edgegrid (setup.py)
@@ -41,7 +41,7 @@ requests-toolbelt==1.0.0
     #   httpie
 rich==14.0.0
     # via httpie
-urllib3==2.4.0
+urllib3==2.5.0
     # via requests
 
 # The following packages are considered to be unsafe in a requirements file:
