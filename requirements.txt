@@ -4,7 +4,7 @@
 #
 #    pip-compile
 #
-certifi==2025.6.15
+certifi==2025.7.14
     # via requests
 charset-normalizer==3.4.2
     # via
@@ -12,7 +12,7 @@ charset-normalizer==3.4.2
     #   requests
 defusedxml==0.7.1
     # via httpie
-edgegrid-python==2.0.1
+edgegrid-python==2.0.2
     # via httpie-edgegrid (setup.py)
 httpie==3.2.4
     # via httpie-edgegrid (setup.py)

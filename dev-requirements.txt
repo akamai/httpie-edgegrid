@@ -4,9 +4,9 @@
 #
 #    pip-compile --extra=dev --output-file=dev-requirements.txt
 #
-astroid==3.3.10
+astroid==3.3.11
     # via pylint
-certifi==2025.6.15
+certifi==2025.7.14
     # via requests
 charset-normalizer==3.4.2
     # via
@@ -18,7 +18,7 @@ defusedxml==0.7.1
     # via httpie
 dill==0.4.0
     # via pylint
-edgegrid-python==2.0.1
+edgegrid-python==2.0.2
     # via httpie-edgegrid (setup.py)
 httpie==3.2.4
     # via httpie-edgegrid (setup.py)
