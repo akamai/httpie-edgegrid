@@ -39,7 +39,7 @@ requests-toolbelt==1.0.0
     # via
     #   edgegrid-python
     #   httpie
-rich==14.0.0
+rich==14.1.0
     # via httpie
 urllib3==2.5.0
     # via requests
