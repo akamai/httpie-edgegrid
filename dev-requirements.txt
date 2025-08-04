@@ -34,7 +34,7 @@ mccabe==0.7.0
     # via pylint
 mdurl==0.1.2
     # via markdown-it-py
-multidict==6.4.3
+multidict==6.6.3
     # via httpie
 packaging==25.0
     # via pytest
