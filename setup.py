@@ -16,7 +16,7 @@ setup(
     python_requires=">=3.9",
     long_description=get_readme(),
     long_description_content_type="text/markdown",
-    version='2.2.2',
+    version='2.2.3',
     license='Apache 2.0',
     url='https://github.com/akamai/httpie-edgegrid',
     download_url='https://github.com/akamai/httpie-edgegrid',
