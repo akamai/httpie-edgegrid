@@ -6,7 +6,7 @@
 #
 astroid==3.3.11
     # via pylint
-certifi==2025.8.3
+certifi==2025.10.5
     # via requests
 charset-normalizer==3.4.3
     # via
