@@ -26,7 +26,7 @@ idna==3.10
     # via requests
 iniconfig==2.1.0
     # via pytest
-isort==6.0.1
+isort==6.1.0
     # via pylint
 markdown-it-py==3.0.0
     # via rich
