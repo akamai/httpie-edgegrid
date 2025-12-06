@@ -41,7 +41,7 @@ requests-toolbelt==1.0.0
     #   httpie
 rich==14.1.0
     # via httpie
-urllib3==2.5.0
+urllib3==2.6.0
     # via requests
 
 # The following packages are considered to be unsafe in a requirements file:
