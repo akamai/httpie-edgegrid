@@ -6,7 +6,7 @@
 #
 astroid==3.3.11
     # via pylint
-certifi==2025.8.3
+certifi==2025.10.5
     # via requests
 charset-normalizer==3.4.3
     # via
@@ -18,7 +18,7 @@ defusedxml==0.7.1
     # via httpie
 dill==0.4.0
     # via pylint
-edgegrid-python==2.0.2
+edgegrid-python==2.0.4
     # via httpie-edgegrid (setup.py)
 httpie==3.2.4
     # via httpie-edgegrid (setup.py)
@@ -26,7 +26,7 @@ idna==3.10
     # via requests
 iniconfig==2.1.0
     # via pytest
-isort==6.0.1
+isort==6.1.0
     # via pylint
 markdown-it-py==3.0.0
     # via rich
@@ -34,7 +34,7 @@ mccabe==0.7.0
     # via pylint
 mdurl==0.1.2
     # via markdown-it-py
-multidict==6.6.4
+multidict==6.7.0
     # via httpie
 packaging==25.0
     # via pytest
@@ -68,11 +68,11 @@ requests-toolbelt==1.0.0
     # via
     #   edgegrid-python
     #   httpie
-rich==14.1.0
+rich==14.2.0
     # via httpie
 tomlkit==0.13.3
     # via pylint
-urllib3==2.5.0
+urllib3==2.6.2
     # via requests
 
 # The following packages are considered to be unsafe in a requirements file:

@@ -1,5 +1,11 @@
 # RELEASE NOTES
 
+## 2.2.4 (Dec 16, 2025)
+
+### FEATURES/ENHANCEMENTS:
+
+* Updated various dependencies.
+
 ## 2.2.3 (Sep 25, 2025)
 
 ### FEATURES/ENHANCEMENTS:
