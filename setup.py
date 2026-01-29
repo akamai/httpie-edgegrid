@@ -13,10 +13,10 @@ def get_readme():
 setup(
     name='httpie-edgegrid',
     description='Edgegrid plugin for HTTPie.',
-    python_requires=">=3.9",
+    python_requires=">=3.10",
     long_description=get_readme(),
     long_description_content_type="text/markdown",
-    version='2.2.4',
+    version='2.2.5',
     license='Apache 2.0',
     url='https://github.com/akamai/httpie-edgegrid',
     download_url='https://github.com/akamai/httpie-edgegrid',
@@ -29,7 +29,7 @@ setup(
     },
     install_requires=[
         'httpie >= 3.0.0',
-        'edgegrid-python >= 2.0.4',
+        'edgegrid-python >= 2.0.5',
     ],
     extras_require={
         'dev': [
