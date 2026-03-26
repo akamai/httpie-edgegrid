@@ -30,7 +30,7 @@ pygments==2.19.2
     #   rich
 pysocks==1.7.1
     # via requests
-requests[socks]==2.32.5
+requests[socks]==2.33.0
     # via
     #   edgegrid-python
     #   httpie
