@@ -24,7 +24,7 @@ mdurl==0.1.2
     # via markdown-it-py
 multidict==6.7.1
     # via httpie
-pygments==2.19.2
+pygments==2.20.0
     # via
     #   httpie
     #   rich
