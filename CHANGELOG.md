@@ -1,5 +1,11 @@
 # RELEASE NOTES
 
+## 2.2.6 (May 12, 2026)
+
+### FEATURES/ENHANCEMENTS:
+
+* Updated various dependencies.
+
 ## 2.2.5 (Feb 4, 2026)
 
 ### FEATURES/ENHANCEMENTS:
