@@ -51,7 +51,7 @@ pygments==2.21.0
     #   httpie
     #   pytest
     #   rich
-pylint==4.0.8
+pylint==4.0.9
     # via httpie-edgegrid (setup.py)
 pysocks==1.7.1
     # via requests
