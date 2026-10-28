@@ -1,5 +1,12 @@
 # RELEASE NOTES
 
+## 2.2.8 (Oct 28, 2026)
+
+### FEATURES/ENHANCEMENTS:
+
+* Updated various dependencies.
+* Dropped support for Python 3.10, the minimum supported version is now Python 3.11.
+
 ## 2.2.7 (Sep 23, 2026)
 
 ### FEATURES/ENHANCEMENTS:
