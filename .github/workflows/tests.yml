@@ -1,0 +1,111 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches: [ main, master ]
+  schedule:
+    - cron: "0 3 * * *"  # 03:00 UTC daily
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: python -m pip install -r dev-requirements.txt && python -m pip install -e .
+
+      - name: Lint
+        run: pylint *.py
+
+      - name: Run unit tests
+        run: |
+          pytest \
+            --junitxml test/tests.xml \
+            --cov-report xml:test/coverage/cobertura-coverage.xml \
+            --cov=gen_edgerc \
+            --cov=httpie_edgegrid
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-results-${{ matrix.python-version }}
+          path: test/
+
+  report:
+    name: Unit Test Report
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Download test results
+        uses: actions/download-artifact@v8
+        with:
+          pattern: test-results-*
+          merge-multiple: false
+
+      - name: Publish test report
+        # dorny/test-reporter v3.0.0 — pinned to SHA for supply-chain safety
+        uses: dorny/test-reporter@a43b3a5f7366b97d083190328d2c652e1a8b6aa2
+        with:
+          name: Unit Test Results
+          path: "test-results-*/tests.xml"
+          reporter: java-junit
+
+  coverage:
+    name: Coverage Report
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Download test results
+        uses: actions/download-artifact@v8
+        with:
+          pattern: test-results-*
+          merge-multiple: false
+
+      - name: Generate coverage summary
+        run: |
+          args=()
+          for dir in test-results-*/; do
+            version="${dir#test-results-}"
+            version="${version%/}"
+            xml="${dir}coverage/cobertura-coverage.xml"
+            if [[ -f "$xml" ]]; then
+              args+=("${version}:${xml}")
+            else
+              echo "::warning::Coverage report not found for Python ${version}: ${xml}" >&2
+            fi
+          done
+          if [[ ${#args[@]} -eq 0 ]]; then
+            echo "::error::No coverage reports found; cannot generate summary." >&2
+            exit 1
+          fi
+          python ci/coverage_report.py "${args[@]}" >> "$GITHUB_STEP_SUMMARY"
