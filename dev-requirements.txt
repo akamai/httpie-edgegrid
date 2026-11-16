@@ -28,7 +28,7 @@ iniconfig==2.3.1
     # via pytest
 isort==9.0.2
     # via pylint
-markdown-it-py==4.2.0
+markdown-it-py==4.3.0
     # via rich
 mccabe==0.7.0
     # via pylint
