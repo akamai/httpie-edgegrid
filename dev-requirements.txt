@@ -40,7 +40,7 @@ mypy-extensions==1.1.0
     # via isort
 packaging==26.3
     # via pytest
-platformdirs==4.13.5
+platformdirs==4.14.5
     # via pylint
 pluggy==1.7.0
     # via
