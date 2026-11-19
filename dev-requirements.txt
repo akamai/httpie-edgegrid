@@ -55,7 +55,7 @@ pylint==4.1.3
     # via httpie-edgegrid (setup.py)
 pysocks==1.7.1
     # via requests
-pytest==9.1.1
+pytest==9.2.0
     # via
     #   httpie-edgegrid (setup.py)
     #   pytest-cov
